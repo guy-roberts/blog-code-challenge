@@ -7,6 +7,9 @@ require "action_mailer/railtie"
 require "sprockets/railtie"
 require "rails/test_unit/railtie"
 
+# needed for implicit_render, rails api does not load this
+ActionController::ImplicitRender
+
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
