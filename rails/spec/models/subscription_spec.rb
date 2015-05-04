@@ -1,5 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe Subscription, :type => :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it "has a valid factory" do
+    expect(FactoryGirl.create(:subscription)).to be_valid
+  end
+  it "is invalid without an email" do
+    expect(FactoryGirl.build(:subscription, email: nil)).not_to be_valid
+  end
 end
