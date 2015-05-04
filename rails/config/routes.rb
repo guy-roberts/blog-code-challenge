@@ -14,8 +14,14 @@ Rails.application.routes.draw do
   end
   
   namespace :api do  
-    namespace :v1 do        
+    namespace :v1 do    
       resources :articles
+      resources :blogs do  
+        resources :subscriptions  
+        resources :articles do 
+          resources :comments
+        end
+      end
     end
   end
       

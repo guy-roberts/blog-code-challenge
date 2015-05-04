@@ -1,3 +1,6 @@
 class Article < ActiveRecord::Base
-  validates :title, :body, presence: true
+  belongs_to :blog
+  has_many :comments
+  
+  validates :blog_id, :title, :body, presence: true
 end

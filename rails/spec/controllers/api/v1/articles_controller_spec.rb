@@ -12,7 +12,8 @@ RSpec.describe Api::V1::ArticlesController, :type => :controller do
     it "populates an array of articles" do
       article = FactoryGirl.create(:article)
       get :index,  :format => :json 
-      expect(assigns(:articles)).to eq([article])
+      
+      expect([assigns(:articles).last]).to eq([article])
     end
     
   end
