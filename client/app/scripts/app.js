@@ -17,21 +17,21 @@ angular
     'ngTouch',
     'restangular'
   ])
-  .config(function ($routeProvider) {
-    $routeProvider
-      .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainController'
-      })
-      .when('/article-list', {
-        templateUrl: 'views/article_list.html',
-        controller: 'ArticleListController'
-      })
-      .when('/login', {
-        templateUrl: 'views/login.html',
-        controller: 'LoginController'
-      })
-      .otherwise({
-        redirectTo: '/'
-      });
-  });
+ .config(['$routeProvider', function ($routeProvider) {
+   $routeProvider
+     .when('/', {
+       templateUrl: 'views/main.html',
+       controller: 'MainController'
+     })
+     .when('/article-list', {
+       templateUrl: 'views/article_list.html',
+       controller: 'ArticleListController'
+     })
+     .when('/login', {
+       templateUrl: 'views/login.html',
+       controller: 'LoginController'
+     })
+     .otherwise({
+       redirectTo: '/'
+     });
+ }]);
