@@ -12,7 +12,14 @@ loremArticleArray = loremArticleText.split('.');
 
 
 (1..19).each do |i|
-  article = Article.new(:title => "Article #{i}", :body => loremArticleArray[i], :blog => @blog)
+  # Have up to six sentences in the article body
+  article_body = loremArticleArray[i]
+  
+  (rand 10).times do |sentence_number|
+    article_body = article_body + loremArticleArray[i + 10 + sentence_number] + '.'
+  end
+  
+  article = Article.new(:title => "Article #{i}", :body => article_body, :blog => @blog)
   article.save!
   (rand 5).times do |j|
     comment = Comment.new(:article => article, :body => loremCommentArray[j], :ip => "192.168.0.1", :email => 'g@home.com')
