@@ -1,6 +1,8 @@
 # blog-code-challenge
 This project shows how I'd implement a minimalistic blog using Rails, Angular and REST.  The server and client side are completely decoupled. There is a [write up here](http://blog.guyroberts.co.uk/?p=3230).
 
+To see a live version, [vist code-challenge.guyroberts.co.uk ](http://code-challenge.guyroberts.co.uk)
+
 ##Ruby version
 Built and tested so far with ruby 2.1.1
 Rails 4.2.1

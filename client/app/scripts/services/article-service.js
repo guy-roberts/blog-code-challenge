@@ -15,7 +15,7 @@ angular.module('blogApp')
   };
 
   this.listOfCommentsForAnArticle = function(article, success, failure) {
-    var promise = article.getList('comments');
+    var promise = article.getList('comments', {article_id: article.id});
     
     promise.then(success, failure);
     

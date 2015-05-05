@@ -16,16 +16,33 @@
       <h4>{{articles.chosenArticle.title}}</h4>
       <p>{{articles.chosenArticle.body}}</p>
       <br/>
-      <p>Comments <span class="pull-right"><a href='' ng-click="newComment({{articles.chosenArticle.id}}">Add a comment</a></span></p>
-      <br/>
-      <ul ng-repeat="comment in articles.chosenComments" class="comment-list">
-        <li>
-          <p>{{comment.body}}</p>
-          <hr/>
-        </li>
-      </ul>
-      
-      $scope.articles.chosenComments >
+      <div ng-controller="CommentsController">
+        <p>Comments <span class="pull-right"><a href='' ng-click="newComment({{articles.chosenArticle.id}})">Add a comment</a></span></p>
+        <br/>
+        <div ng-show="articles.show_comment_input">
+          <form name="newCommentForm" class="form-horizontal row new-comment" role="form" novalidate >
+            <div class="form-group" ng-class="{  'has-error': newCommentForm.$submitted && newCommentForm.body.$invalid,  'has-success': newCommentForm.$submitted && newCommentForm.body.$valid}">
+              <div class="col-md-12">
+                <textarea class="form-control"  name="body" ng-model='articles.newComment.body' required />
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-md-12">
+                <input type="submit" value="Save" ng-click="addNewComment()"  ng-disabled="newCommentForm.$invalid" class="btn btn-primary">
+                <input type="submit" value="Cancel" ng-click="cancelNewComment()" class="btn btn-primary" >
+              </div>
+            </div> 
+          </form>
+        </div>
+        <br/>
+        <br/>
+        <ul ng-repeat="comment in articles.chosenComments | orderBy: '-id' " class="comment-list">
+          <li>
+            <p>{{comment.body}}</p>
+            <hr/>
+          </li>
+        </ul>     
+      </div> <!-- CommentsController -->
     </div>
   </div> <!-- row -->
 </div> <!-- container -->

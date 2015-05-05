@@ -4,7 +4,7 @@
  * @ngdoc function
  * @name remindersApp.controller:ArticleListController
  * @description
- * # ArticleListCtrl
+ * # ArticleListController
  * Controller of the blogApp
  */
 angular.module('blogApp')
@@ -12,16 +12,16 @@ angular.module('blogApp')
 	
 	$scope.articles = {};
 	$scope.articles.article_search_criteria = "";
+	$scope.articles.mode = 'MODE_ARTICLE_LIST'
 	
 	$scope.chooseArticle = function(article_id) {
 		for (var i = 0; i < $scope.articles.article_list.length; i++) {
 			if ($scope.articles.article_list[i].id === article_id) {
-				
-				$scope.articles.chosenArticle = $scope.articles.article_list[article_id];
+				$scope.articles.chosenArticle = $scope.articles.article_list[i];
+				ArticleService.listOfCommentsForAnArticle($scope.articles.chosenArticle, successForListOfComments, failureForListOfComments)
 			  break;	
 			}
 		}
-		
 	};
 	
 	var failureForListOfComments = function() {

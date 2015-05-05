@@ -6,7 +6,12 @@ module Api
       respond_to :json
 
       def index
-        @comments = Comment.all
+        
+        if (params['article_id'])
+          @comments = Comment.where('article_id = ?', params['article_id'])
+        else
+          @comments = Comment.all
+        end
         
         respond_with @comments
       end
@@ -18,6 +23,7 @@ module Api
       end
 
       def create
+      
         begin
           comment = Comment.create!(comment_params)
           
@@ -48,7 +54,7 @@ module Api
       private
       
       def comment_params
-        params.require(:comment).permit(:id, :body, :ip, :email)
+        params.require(:comment).permit(:id, :body, :ip, :email, :blog_id, :article_id)
       end      
       
     end

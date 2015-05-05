@@ -104,3 +104,10 @@ ul.comment-list {
 ul.article-list li a {
   text-align: left;
 }
+
+form.new-comment {
+  margin-left: 32px;
+}
+.new-comment div div textarea {
+  width: 100%;
+}
