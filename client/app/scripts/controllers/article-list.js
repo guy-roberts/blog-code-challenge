@@ -8,13 +8,17 @@
  * Controller of the blogApp
  */
 angular.module('blogApp')
-  .controller('ArticleListController', ['$scope', 'BlogService', 'ArticleService',  function ($scope, BlogService, ArticleService) {
+  .controller('ArticleListController', ['$scope', 'BlogService', 'ArticleService', 'SubscriptionService',  function ($scope, BlogService, ArticleService, SubscriptionService) {
 	
 	$scope.articles = {};
+	
+	$scope.articles.infoMessage = "Something happened";
+	$scope.articles.showMessage = false;
 	
 	$scope.articles.articleSearchCriteria = '';
 	$scope.articles.MODE_ARTICLE_LIST = 0;
 	$scope.articles.MODE_ARTICLE_ADD = 1;
+	$scope.articles.MODE_SUBSCRIBE = 2;
 	
 	$scope.articles.mode = $scope.articles.MODE_ARTICLE_LIST;
 	
@@ -58,15 +62,14 @@ angular.module('blogApp')
 	};
 	
 	$scope.successForArticlePost = function(newArticle) {
-		debugger;
+		// Refresh the list
+		$scope.articles.article_list.push(newArticle);
+		//$scope.articles.showMessage = false;
+		
 	};
 	
 	$scope.failureForArticlePost = function() {
 		console.log('Failed to post article');
-	};
-	
-	$scope.subscribe = function() {
-	  debugger;	
 	};
 	
 	$scope.showNewArticleForm = function() {
@@ -84,6 +87,39 @@ angular.module('blogApp')
 	$scope.cancelNewArticle = function() {
 		$scope.articles.mode = $scope.articles.MODE_ARTICLE_LIST;
 	};
+	
+	$scope.showSubscriptionForm = function() {
+	  $scope.articles.mode = $scope.articles.MODE_SUBSCRIBE;
+	};
+
+	$scope.cancelNewSubscription = function() {
+	  $scope.articles.mode = $scope.articles.MODE_ARTICLE_LIST;
+	  $scope.articles.subscription = {};
+	};
+	
+	
+	$scope.successForPostSubscription = function(newSubscription) {
+		console.log('Success for post subscription');
+	};
+	$scope.failureForPostSubscription = function() {
+		console.log('Failed to post a new subscription');
+	};
+	
+	
+	$scope.successForListOfSubscriptions = function(subscriptions) {
+		$scope.articles.subscriptions = subscriptions;
+		$scope.articles.subscription.blog_id = $scope.articles.chosenBlog.id;
+		SubscriptionService.postSubscription(subscriptions, $scope.articles.subscription, $scope.successForPostSubscription, $scope.failureForPostSubscription);
+	};
+	$scope.failureForListOfSubscriptions = function() {
+		console.log('Failed to get list of subscriptions');
+	};
+	
+	$scope.addNewSubscription = function() {
+	  $scope.articles.mode = $scope.articles.MODE_ARTICLE_LIST;
+	  
+	  SubscriptionService.listOfSubscriptions($scope.articles.chosenBlog, $scope.successForListOfSubscriptions, $scope.failureForListOfSubscriptions);
+ 	};
 	
 	// Find the first blog and we'll show the articles for that
 	BlogService.listOfBlogs(successForListOfBlogs, failureForListOfBlogs);	

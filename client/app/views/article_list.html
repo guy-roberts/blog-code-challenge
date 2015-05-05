@@ -1,17 +1,19 @@
 <div class='container page'>
   <h3>{{articles.listOfBlogs[0].title}}</h3>
+  <div ng-model="message" ng-show="articles.showMessage" class="message fadein fadeout">{{articles.infoMessage}}</div>
+  
   <br/>
   <div class="row">
     <div class='col-md-4' ng-show="(articles.mode === articles.MODE_ARTICLE_LIST)">
       <h4><a href="" ng-click="showNewArticleForm()"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;Add an article</a></h4>
-      <h4><a href="" ng-click="subscribe()"><span class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;Subscribe</a></h4>
+      <h4><a href="" ng-click="showSubscriptionForm()"><span class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;Subscribe</a></h4>
       <br/>
       <h4>Past articles</h4>
       <br/>
       <input ng-model="articles.articleSearchCriteria" placeholder="Search titles">
       <br/>
       <br/>
-      <ul ng-repeat="article in articles.article_list | filter:articles.articleSearchCriteria" class="article-list">
+      <ul ng-repeat="article in articles.article_list | filter:articles.articleSearchCriteria | orderBy: '-id'" class="article-list">
         <li><a  ng-click="chooseArticle({{article.id}})" tooltip="Click to read {{article.title}}">{{article.title}}</a></li>
       </ul>
     </div>
@@ -54,7 +56,7 @@
         <h4>Add a new article</h4>
         <br/>
         
-        <div class="form-group" ng-class="{  'has-error': newArticleForm.$submitted && newArticleForm.body.$invalid,  'has-success': newArticleForm.$submitted && newArticleForm.body.$valid}">
+        <div class="form-group" ng-class="{'has-error': newArticleForm.$submitted && newArticleForm.body.$invalid,  'has-success': newArticleForm.$submitted && newArticleForm.body.$valid}">
           <div class="col-md-12">            
             <input class="form-control" type="text" name="body" ng-model='articles.newArticle.title' required placeholder="Article title"/>
             <br/><br/>
@@ -67,6 +69,27 @@
           <div class="col-md-12">
             <input type="submit" value="Save" ng-click="addNewArticle()"  ng-disabled="newArticleForm.$invalid" class="btn btn-primary">
             <input type="submit" value="Cancel" ng-click="cancelNewArticle()" class="btn btn-primary" >
+          </div>
+        </div> 
+      </form>
+    </div>
+    
+    <div class='col-md-6' ng-show="(articles.mode === articles.MODE_SUBSCRIBE)" animated fadeIn>
+      <form name="subscriptionForm" class="form-horizontal row subscription-form" role="form" novalidate >
+        <h4>Subscribe to updates</h4>
+        <p>Tell us your email address and we'll send you updates about new articles</p>
+        <br/>
+        <div class="form-group" ng-class="{'has-error': subscriptionForm.$submitted && subscriptionForm.email.$invalid,  'has-success': subscriptionForm.$submitted && subscriptionForm.email.$valid}">
+          <div class="col-md-12">            
+            <input class="form-control" type="email" name="email" ng-model='articles.subscription.email' required placeholder="Your email me@home.com"/>
+            <p ng-show="subscriptionForm.$submitted && subscriptionForm.email.$invalid" class="has-error">Invalid email format</p>
+            <br/>            
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-md-12">
+            <input type="submit" value="Save" ng-click="addNewSubscription()"  ng-disabled="subscriptionForm.$invalid" class="btn btn-primary">
+            <input type="submit" value="Cancel" ng-click="cancelNewSubscription()" class="btn btn-primary" >
           </div>
         </div> 
       </form>
