@@ -1,4 +1,4 @@
-e'use strict';
+'use strict';
 
 /**
  * @ngdoc function
@@ -8,10 +8,7 @@ e'use strict';
  * Controller of the blogApp
  */
 angular.module('blogApp')
-  .controller('MainController', '$scope', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  });
+  .controller('MainController', ['$scope', function ($scope) {
+
+}]);
+
