@@ -19,6 +19,16 @@ rake db:seed
 cd rails
 rspec
 
+##Angular Development environment
+To change the angular code, 
+cd client
+Assuming npm and bower are installed
+bower update
+grunt serve 
+This will serve the angular app at localhost:3000. Run the Rails app in another terminal.
+To build for deployment
+grunt build
+
 
 ##Deployment instructions
 Deployment will be to heroku,  but these environment variables for SMTP will be needed so that emails can be sent.  These will be 

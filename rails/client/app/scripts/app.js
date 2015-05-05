@@ -2,29 +2,34 @@
 
 /**
  * @ngdoc overview
- * @name clientApp
+ * @name blogApp
  * @description
- * # clientApp
+ * # blogApp
  *
  * Main module of the application.
  */
 angular
-  .module('clientApp', [
+  .module('blogApp', [
     'ngAnimate',
     'ngCookies',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'restangular'
   ])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
+        controller: 'MainController'
       })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl'
+      .when('/article-list', {
+        templateUrl: 'views/article_list.html',
+        controller: 'ArticleListController'
+      })
+      .when('/login', {
+        templateUrl: 'views/login.html',
+        controller: 'LoginController'
       })
       .otherwise({
         redirectTo: '/'
