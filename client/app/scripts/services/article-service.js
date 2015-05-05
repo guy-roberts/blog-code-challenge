@@ -15,10 +15,19 @@ angular.module('blogApp')
   };
 
   this.listOfCommentsForAnArticle = function(article, success, failure) {
-    var promise = article.getList('comments', {article_id: article.id});
+    var promise = article.getList('comments', {article_id: article.i});
     
     promise.then(success, failure);
     
     return(promise); // for the cg-busy spinner
   };
+
+  this.postArticle = function(listOfArticles, newArticle, success, failure) {
+	  var promise = listOfArticles.post({article: newArticle});
+    
+    promise.then(success, failure);
+
+    return(promise); // for the cg-busy spinner
+  };
+
 }]);

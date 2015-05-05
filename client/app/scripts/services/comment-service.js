@@ -7,7 +7,6 @@ angular.module('blogApp')
   Restangular.setBaseUrl('/api/v1');
 
   this.postComment = function(listOfComments, newComment, success, failure) {
-	
     var promise = listOfComments.post({comment: newComment});
     
     promise.then(success, failure);

@@ -11,14 +11,18 @@ angular.module('blogApp')
   .controller('ArticleListController', ['$scope', 'BlogService', 'ArticleService',  function ($scope, BlogService, ArticleService) {
 	
 	$scope.articles = {};
-	$scope.articles.article_search_criteria = "";
-	$scope.articles.mode = 'MODE_ARTICLE_LIST'
+	
+	$scope.articles.articleSearchCriteria = '';
+	$scope.articles.MODE_ARTICLE_LIST = 0;
+	$scope.articles.MODE_ARTICLE_ADD = 1;
+	
+	$scope.articles.mode = $scope.articles.MODE_ARTICLE_LIST;
 	
 	$scope.chooseArticle = function(article_id) {
 		for (var i = 0; i < $scope.articles.article_list.length; i++) {
 			if ($scope.articles.article_list[i].id === article_id) {
 				$scope.articles.chosenArticle = $scope.articles.article_list[i];
-				ArticleService.listOfCommentsForAnArticle($scope.articles.chosenArticle, successForListOfComments, failureForListOfComments)
+				ArticleService.listOfCommentsForAnArticle($scope.articles.chosenArticle, successForListOfComments, failureForListOfComments);
 			  break;	
 			}
 		}
@@ -40,16 +44,45 @@ angular.module('blogApp')
 		$scope.articles.article_list = articles;
 		$scope.articles.chosenArticle = articles[0];
 		
-		ArticleService.listOfCommentsForAnArticle($scope.articles.chosenArticle, successForListOfComments, failureForListOfComments)
+		ArticleService.listOfCommentsForAnArticle($scope.articles.chosenArticle, successForListOfComments, failureForListOfComments);
 	};
 	
 	var successForListOfBlogs = function(blogs) {
 		$scope.articles.listOfBlogs = blogs;
-		ArticleService.listOfArticlesForBlog(blogs[0], successForListOfArticles, failureForListOfArticles)
+		$scope.articles.chosenBlog = blogs[0]; // For now, only one blog
+		ArticleService.listOfArticlesForBlog($scope.articles.chosenBlog, successForListOfArticles, failureForListOfArticles);
 	};
 	
 	var failureForListOfBlogs = function() {
 		console.log('Failed to get list of blogs');
+	};
+	
+	$scope.successForArticlePost = function(newArticle) {
+		debugger;
+	};
+	
+	$scope.failureForArticlePost = function() {
+		console.log('Failed to post article');
+	};
+	
+	$scope.subscribe = function() {
+	  debugger;	
+	};
+	
+	$scope.showNewArticleForm = function() {
+		$scope.articles.mode = $scope.articles.MODE_ARTICLE_ADD;
+		$scope.articles.newArticle = {};
+	};
+	
+	$scope.addNewArticle = function() {
+    $scope.articles.mode = $scope.articles.MODE_ARTICLE_LIST;
+
+	  $scope.articles.newArticle.blog_id = $scope.articles.chosenBlog.id;
+	  ArticleService.postArticle($scope.articles.article_list, $scope.articles.newArticle, $scope.successForArticlePost, $scope.failureForArticlePost);
+	};
+	
+	$scope.cancelNewArticle = function() {
+		$scope.articles.mode = $scope.articles.MODE_ARTICLE_LIST;
 	};
 	
 	// Find the first blog and we'll show the articles for that

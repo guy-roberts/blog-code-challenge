@@ -108,6 +108,18 @@ ul.article-list li a {
 form.new-comment {
   margin-left: 32px;
 }
+
+.new-article {
+  color: green;
+}
+
+#article-body {
+  height: 300px;
+}
+
+.new-article-form {
+  margin-left: 30px;
+}
 .new-comment div div textarea {
   width: 100%;
 }
