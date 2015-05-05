@@ -14,12 +14,12 @@ angular.module('blogApp')
 	
 	var successForListOfBlogs = function(blogs) {
 		$scope.articles.listOfBlogs = blogs;
-		debugger
 	};
 	
 	var failureForListOfBlogs = function() {
 		console.log('Failed to get list of blogs');
 	};
 	
+	// Find the first blog and we'll show the articles for that
 	BlogService.listOfBlogs(successForListOfBlogs, failureForListOfBlogs);	
 }]);
