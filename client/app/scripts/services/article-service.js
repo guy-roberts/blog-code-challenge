@@ -6,12 +6,19 @@ angular.module('blogApp')
   Restangular.setRequestSuffix('.json');
   Restangular.setBaseUrl('/api/v1');
 
-  this.listOfArticles = function(success, failure) {
-    var promise = Restangular.all('articles').getList();
+  this.listOfArticlesForBlog = function(blog, success, failure) {
+    var promise = blog.getList('articles');
     
     promise.then(success, failure);
     
     return(promise); // for the cg-busy spinner
   };
 
+  this.listOfCommentsForAnArticle = function(article, success, failure) {
+    var promise = article.getList('comments');
+    
+    promise.then(success, failure);
+    
+    return(promise); // for the cg-busy spinner
+  };
 }]);

@@ -90,3 +90,17 @@ body {
     border-bottom: 0;
   }
 }
+
+ul.article-list {
+  padding-left: 0;
+  margin-left: 0;
+  list-style-type: none;
+}
+
+ul.comment-list {
+  list-style-type: none;
+}
+
+ul.article-list li a {
+  text-align: left;
+}
