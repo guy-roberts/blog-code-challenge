@@ -490,7 +490,7 @@ module.exports = function (grunt) {
     'svgmin',
     'autoprefixer',
     'concat',
-    //'ngAnnotate',
+    'ngAnnotate',
     'copy:dist',
     'cdnify',
     'cssmin',

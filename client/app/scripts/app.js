@@ -53,7 +53,7 @@ angular
        return promise.then(success, err);
      };
    }];
-
+   // http://stackoverflow.com/questions/23804981/alternative-of-httpprovider-responseinterceptors
    //$httpProvider.responseInterceptors.push(interceptor);
  }])
  .run(['$rootScope', '$http', '$location', 'tokenHandler', function($rootScope, $http, $location, tokenHandler) {

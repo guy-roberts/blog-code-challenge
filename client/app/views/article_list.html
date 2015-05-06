@@ -14,7 +14,7 @@
       <br/>
       <br/>
       <ul ng-repeat="article in articles.article_list | filter:articles.articleSearchCriteria | orderBy: '-id'" class="article-list">
-        <li><a  ng-click="chooseArticle({{article.id}})" tooltip="Click to read {{article.title}}">{{article.title}}</a></li>
+        <li><a  ng-click="chooseArticle('{{article.id}}')" tooltip="Click to read {{article.title}}">{{article.title}}</a></li>
       </ul>
     </div>
     
@@ -23,7 +23,7 @@
       <p>{{articles.chosenArticle.body}}</p>
       <br/>
       <div ng-controller="CommentsController">
-        <p>Comments <span class="pull-right"><a href='' ng-click="newComment({{articles.chosenArticle.id}})">Add a comment</a></span></p>
+        <p>Comments <span class="pull-right"><a href='' ng-click="newComment('{{articles.chosenArticle.id}}')">Add a comment</a></span></p>
         <br/>
         <div ng-show="articles.show_comment_input">
           <form name="newCommentForm" class="form-horizontal row new-comment" role="form" novalidate >
