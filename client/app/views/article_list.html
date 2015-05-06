@@ -14,16 +14,17 @@
       <br/>
       <br/>
       <ul ng-repeat="article in articles.article_list | filter:articles.articleSearchCriteria | orderBy: '-id'" class="article-list">
-        <li><a  ng-click="chooseArticle('{{article.id}}')" tooltip="Click to read {{article.title}}">{{article.title}}</a></li>
+        <li><a href="" ng-click='chooseArticle(article.id)' tooltip="Click to read {{article.title}}">{{article.title}}</a></li>
       </ul>
     </div>
     
     <div class='col-md-6' ng-show="(articles.mode === articles.MODE_ARTICLE_LIST)" animated fadeIn>
       <h4>{{articles.chosenArticle.title}}</h4>
-      <p>{{articles.chosenArticle.body}}</p>
+      <div btf-markdown="articles.chosenArticle.body">
+      </div>
       <br/>
       <div ng-controller="CommentsController">
-        <p>Comments <span class="pull-right"><a href='' ng-click="newComment('{{articles.chosenArticle.id}}')">Add a comment</a></span></p>
+        <p>Comments <span class="pull-right"><a href='' ng-click="newComment(articles.chosenArticle.id)">Add a comment</a></span></p>
         <br/>
         <div ng-show="articles.show_comment_input">
           <form name="newCommentForm" class="form-horizontal row new-comment" role="form" novalidate >
