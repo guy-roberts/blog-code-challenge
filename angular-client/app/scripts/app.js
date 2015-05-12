@@ -15,7 +15,8 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
-    'restangular'
+    'restangular',
+    'btford.markdown'
   ])
  .config(['$routeProvider', function ($routeProvider) {
    $routeProvider
