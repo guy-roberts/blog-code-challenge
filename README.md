@@ -7,6 +7,11 @@ To see a live version, [vist code-challenge.guyroberts.co.uk ](http://code-chall
 Built and tested so far with ruby 2.1.1
 Rails 4.2.1
 
+##Get started
+git clone https://github.com/guy-roberts/code-challenge.git
+cd angular-client
+npm install
+bower install
 
 ##Database creation
 rake db:create
@@ -33,7 +38,8 @@ grunt build
 
 
 ##Deployment instructions
-Deployment will be to heroku,  but these environment variables for SMTP will be needed so that emails can be sent.  These will be 
+
+Deployment will be to heroku  but these environment variables for SMTP will be needed so that emails can be sent.  These will be 
 
 * BLOG_SMTP_DOMAIN=xxx@xxxxx
 * BLOG_SMTP_PASSWORD=xxxxxxxxxx
