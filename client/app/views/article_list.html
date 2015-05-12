@@ -30,7 +30,7 @@
           <form name="newCommentForm" class="form-horizontal row new-comment" role="form" novalidate >
             <div class="form-group" ng-class="{  'has-error': newCommentForm.$submitted && newCommentForm.body.$invalid,  'has-success': newCommentForm.$submitted && newCommentForm.body.$valid}">
               <div class="col-md-12">
-                <textarea class="form-control"  name="body" ng-model='articles.newComment.body' required />
+                <textarea class="form-control"  name="body" ng-model='articles.newComment.body' required >
               </div>
             </div>
             <div class="form-group">
@@ -61,7 +61,7 @@
           <div class="col-md-12">            
             <input class="form-control" type="text" name="body" ng-model='articles.newArticle.title' required placeholder="Article title"/>
             <br/><br/>
-            <textarea class="form-control"  name="body" ng-model='articles.newArticle.body' id="article-body" required  placeholder="Article body"/>
+            <textarea class="form-control"  name="body" ng-model='articles.newArticle.body' id="article-body" required  placeholder="Article body">
             <p>Use <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet" target="Markdown cheat sheet">Markdown</a> for the body</p>
             
           </div>
